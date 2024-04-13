@@ -1,0 +1,177 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/drillygzzly/Other/main/Lmao.lua"))()
+
+library:init() -- Initalizes Library Do Not Delete This
+
+local Window = library.NewWindow({
+	title = "TAEBI UNIT OP SCRIPT",
+	size = UDim2.new(0, 525, 0, 650)
+})
+
+local tabs = {
+    Tab1 = Window:AddTab("일반"),
+	Settings = library:CreateSettingsTab(Window),
+}
+local sectionKill = tabs.Tab1:AddSection("Kill", 1)
+
+sectionKill:AddButton({
+    enabled=true,
+    text="KILL ALL",
+    flag="killall",
+    tooltip="모두를 죽입니다",
+    risky=false,
+    confirm=false,
+    callback = function()
+        if game.ReplicatedStorage:FindFirstChild("CarbonResource") then
+            for _,player in pairs(game.Players:GetPlayers()) do
+                if player ~= game.Players.LocalPlayer then
+                     game.ReplicatedStorage.CarbonResource.Events:GetChildren()[4]:FireServer(player.Character.Humanoid, 100, "Head", {'nil', 'Auth', 'nil', 'nil'})
+                end
+            end
+          else
+            print("Game doesn't have Carbon!")
+          end
+    end
+})
+
+local SectionAnti = tabs.Tab1:AddSection("Anti", 2)
+SectionAnti:AddToggle({
+    enabled=true,
+    text="Anti-Kick(Not Server-Sided)",
+    flag="antikick",
+    tooltip="킥을 방지합니다 (안티밴이 아니며 로컬스크립트 전용입니다)",
+    risky=false,
+    callback = function(value)
+        loadstring(game:HttpGet("https://pastebin.com/raw/gsxvWvnj"))()
+    end
+})
+SectionAnti:AddButton({
+    enabled = true,
+    text = "God Mode",
+    flag = "god",
+    tooltip = "죽지 않습니다",
+    risky = false,
+    confirm = false,
+    callback = function()    
+    loadstring(game:HttpGet("https://freenote.biz/raw/Fhpx5r5A8M"))()
+    end
+})
+
+-- 1 = Set Section Box To The Left
+-- 2 = Set Section Box To The Right
+
+--[[local sections = {
+	Section1 = tabs.Tab1:AddSection("Section1", 1),
+	Section2 = tabs.Tab1:AddSection("Section2", 2),
+}
+
+sections.Section1:AddToggle({
+	enabled = true,
+	text = "Toggle1",
+	flag = "Toggle_1",
+	tooltip = "Tooltip1",
+	risky = true, -- turns text to red and sets label to risky
+	callback = function(lol)
+	    print("Toggle Is Now Set To : ".. lol)
+	end
+})
+
+sections.Section1:AddButton({
+	enabled = true,
+	text = "Button1",
+	flag = "Button_1",
+	tooltip = "Tooltip1",
+	risky = false,
+	confirm = false, -- shows confirm button
+	callback = function(v)
+	    print(v)
+	end
+})
+
+sections.Section1:AddSeparator({
+	text = "Separator"
+})
+
+sections.Section1:AddSlider({
+	text = "Slider", 
+	flag = 'Slider_1', 
+	suffix = "", 
+	value = 0.000,
+	min = 0.1, 
+	max = 0.999,
+	increment = 0.001,
+	tooltip = "Tooltip1",
+	risky = false,
+	callback = function(v) 
+		print("Slider Value Is Now : ".. v)
+	end
+})
+
+sections.Section1:AddBind({
+	text = "Keybind",
+	flag = "Key_1",
+	nomouse = true,
+	noindicator = true,
+	tooltip = "Tooltip1",
+	mode = "toggle",
+	bind = Enum.KeyCode.Q,
+	risky = false,
+	keycallback = function(v)
+	    print("Keybind Changed!")
+	end
+})
+
+sections.Section1:AddList({
+	enabled = true,
+	text = "List",
+	flag = "List_1",
+	multi = false,
+	tooltip = "Tooltip1",
+    risky = false,
+    dragging = false,
+    focused = false,
+	value = "1",
+	values = {
+		"1",
+		"2",
+		"3"
+	},
+	callback = function(v)
+	    print("List Value Is Now : "..v)
+	end
+})
+
+sections.Section1:AddBox({
+    enabled = true,
+    focused = true,
+    text = "TextBox1",
+    input = "PlaceHolder1",
+	flag = "Text_1",
+	risky = false,
+	callback = function(v)
+	    print(v)
+	end
+})
+
+sections.Section1:AddText({
+    enabled = true,
+    text = "Text1",
+    flag = "Text_1",
+    risky = false,
+})
+
+sections.Section1:AddColor({
+    enabled = true,
+    text = "ColorPicker1",
+    flag = "Color_1",
+    tooltip = "ToolTip1",
+    color = Color3.new(255, 255, 255),
+    trans = 0,
+    open = false,
+    callback = function()
+        
+    end
+})
+
+library:SendNotification("Notification", 5, Color3.new(255, 0, 0))
+
+--Window:SetOpen(true) -- Either Close Or Open Window ]]--
